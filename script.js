@@ -48,6 +48,8 @@ downloadBtn.addEventListener("click", function () {
         return; // Exit the function if the QR code is not generated
     }
 
+    downloadBtn.innerHTML = "Downloading QR Code..."
+
     // Fetching the specific QR code
 
     fetch(qrImg.src)
@@ -68,6 +70,12 @@ downloadBtn.addEventListener("click", function () {
             downloadLink.click();
 
             document.body.removeChild(downloadLink);
+
+            downloadBtn.innerHTML = `QR Code Downloaded <i class="bi bi-check-circle-fill"></i>`;
+
+            setTimeout(() => {
+                downloadBtn.innerHTML = "Download QR Code"
+            }, 3000)
 
             URL.revokeObjectURL(blobUrl);
         });
